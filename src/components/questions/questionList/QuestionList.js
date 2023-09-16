@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./QuestionList.css";
+import { useNavigate } from 'react-router-dom';
 
 function QuestionList() {
   const [questions, setQuestions] = useState([]);
@@ -8,6 +10,13 @@ function QuestionList() {
 
   function getToken() {
     return localStorage.getItem("token");
+  }
+
+  const navigate = useNavigate();
+
+  const redirectToAddQuestion = () =>{ 
+    let path = `/app/ask`; 
+    navigate(path);
   }
 
   useEffect(() => {
@@ -50,34 +59,46 @@ function QuestionList() {
   };
 
   return (
-    <div>
-      <h2>Questions</h2>
-      <form onSubmit={handleSearchSubmit}>
-        <input
-          type="text"
-          placeholder="Search questions by title or tag"
-          value={searchQuery}
-          onChange={handleSearchChange}
-        />
-        <button type="submit">Search</button>
-      </form>
+    <div className="questions">
+      <div className="question-form">
+        <h2>ALL QUESTIONS</h2>
+        <form onSubmit={handleSearchSubmit}>
+          <div>
+            <input
+              type="text"
+              placeholder="Search questions by title or tag"
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+            <button type="submit">Search</button>
+          </div>
+          <div>
+            <button onClick={redirectToAddQuestion} className="add-question">ADD QUESTION</button>
+          </div>
+        </form>
 
-      <ul>
-        {searchResults.length > 0
-          ? `${searchResults.length} SEARCH RESULTS`
-          : `ALL RESULT, 0 SEARCH RESULTS`}
-        {searchResults.length > 0
-          ? searchResults.map((question) => (
-              <li key={question._id}>
-                <a href={`/app/questions/${question._id}`}>{question.title}</a>
-              </li>
-            ))
-          : questions.map((question) => (
-              <li key={question._id}>
-                <a href={`/app/questions/${question._id}`}>{question.title}</a>
-              </li>
-            ))}
-      </ul>
+        <ul>
+          <p className="results">{searchResults.length > 0
+            ? `${searchResults.length} SEARCH RESULTS`
+            : `DISPLAYING ALL RESULTS, 0 SEARCH RESULTS`}</p>
+          
+          {searchResults.length > 0
+            ? searchResults.map((question) => (
+                <li key={question._id}>
+                  <a href={`/app/questions/${question._id}`}>
+                    {question.title}
+                  </a>
+                </li>
+              ))
+            : questions.map((question) => (
+                <li key={question._id}>
+                  <a href={`/app/questions/${question._id}`}>
+                    {question.title}
+                  </a>
+                </li>
+              ))}
+        </ul>
+      </div>
     </div>
   );
 }

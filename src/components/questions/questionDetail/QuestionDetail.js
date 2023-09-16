@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import AnswerList from '../../answers/Answers';
-import AddAnswer from '../../answers/AddAnswer';
+import AnswerList from "../../answers/Answers";
+import AddAnswer from "../../answers/AddAnswer";
+import "./QuestionDetail.css";
+import { useNavigate } from 'react-router-dom';
 
 function QuestionDetail({ match }) {
   const [question, setQuestion] = useState(null);
   const { id } = useParams();
   function getToken() {
     return localStorage.getItem("token");
+  }
+
+  const navigate = useNavigate();
+
+
+  const goToHomePage =()=>{
+    let path = `/app`; 
+    navigate(path);
   }
 
   useEffect(() => {
@@ -31,21 +41,31 @@ function QuestionDetail({ match }) {
   if (!question) {
     return <div>Loading...</div>;
   }
+  
 
   return (
-    <div>
-      <h2>{question.title}</h2>
-      <p>{question.body}</p>
-      <ul>
-        {question.tags.map((tag, index) => (
-          <li key={index}>{tag}</li>
-        ))}
-      </ul>
-      <p>Author Id: {question.author}</p>
-      <p>Date Posted: {new Date(question.createdAt).toLocaleDateString()}</p>
-      <AddAnswer questionId={question._id}/>
-      <AnswerList questionId={question._id} isAuthorOfQuestion={question.author === localStorage.getItem("user_id")}/>
-      
+    <div className="question-details">
+      <div className="question-details-form">
+        <span style={{cursor: 'pointer'}} onClick={goToHomePage}>{"< Go back"}</span>
+        <hr />
+        <h2>{question.title}</h2>
+        <p>{question.body}</p>
+        <p>Author Id: {question.author}</p>
+        <p>Date Posted: {new Date(question.createdAt).toLocaleDateString()}</p>
+        <p>Tags: {question.tags.map((tag, index) => (
+            <span>#{tag.trim()} </span>
+          ))}</p>
+        <hr />
+        <AddAnswer questionId={question._id} />
+        <hr />
+        <AnswerList
+          questionId={question._id}
+          isAuthorOfQuestion={
+            question.author === localStorage.getItem("user_id")
+          }
+        />
+        <hr />
+      </div>
     </div>
   );
 }

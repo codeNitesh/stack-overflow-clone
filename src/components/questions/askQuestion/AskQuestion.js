@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./AskQuestion.css";
+import { useNavigate } from "react-router-dom";
 
 function AskQuestion() {
   const [title, setTitle] = useState("");
@@ -41,7 +43,7 @@ function AskQuestion() {
         setErrorMessage("");
         setBody("");
         setTags("");
-        setTitle("")
+        setTitle("");
       })
       .catch((error) => {
         setSuccessMessage("");
@@ -50,43 +52,56 @@ function AskQuestion() {
       });
   };
 
+  const navigate = useNavigate();
+
+  const goToHomePage = () => {
+    let path = `/app`;
+    navigate(path);
+  };
+
   return (
-    <div>
-      <h2>Ask a Question</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={handleTitleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="body">Body:</label>
-          <textarea
-            id="body"
-            value={body}
-            onChange={handleBodyChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="tags">Tags (comma-separated):</label>
-          <input
-            type="text"
-            id="tags"
-            value={tags}
-            onChange={handleTagsChange}
-            required
-          />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-      {successMessage && <p>{successMessage}</p>}
-      {errorMessage && <p>{errorMessage}</p>}
+    <div className="ask-question">
+      <div className="ask-question-form">
+        <span style={{ cursor: "pointer" }} onClick={goToHomePage}>
+          {"< Go back"}
+        </span>
+        <hr />
+        <h2>Ask a Question</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="input">
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={handleTitleChange}
+              required
+            />
+          </div>
+          <div className="input">
+            <label htmlFor="body">Body:</label>
+            <textarea
+              id="body"
+              value={body}
+              onChange={handleBodyChange}
+              required
+            />
+          </div>
+          <div className="input">
+            <label htmlFor="tags">Tags (comma-separated):</label>
+            <input
+              type="text"
+              id="tags"
+              value={tags}
+              onChange={handleTagsChange}
+              required
+            />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+        {successMessage && <p>{successMessage}</p>}
+        {errorMessage && <p>{errorMessage}</p>}
+      </div>
     </div>
   );
 }

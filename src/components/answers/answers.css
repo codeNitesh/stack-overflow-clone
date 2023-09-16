@@ -1,0 +1,13 @@
+.text-area{
+    width: 400px;
+    height: 100px;
+}
+
+.submit-answer{
+    margin: 10px 0px;
+    width: 120px;
+}
+
+.answers button{
+    width: 120px;
+}

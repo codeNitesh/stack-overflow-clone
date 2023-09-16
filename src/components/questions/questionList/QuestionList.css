@@ -1,0 +1,43 @@
+.questions{
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.question-form{
+    background-color: white;
+    height: 600px;
+    width: 800px;
+    padding: 20px;
+    overflow: scroll;
+
+}
+.questions h2{
+    margin-left: 18px;
+}
+
+.question-form input{
+    width: 200px;
+    margin-right: 10px;
+    padding: 6px 10px;
+}
+.question-form button{
+    padding: 7px 3px;
+}
+
+.question-form form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-question{
+    width: 160px;
+}
+
+.results{
+    color: blue;
+}

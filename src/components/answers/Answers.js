@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./answers.css";
 
 function AnswerList({ questionId, isAuthorOfQuestion }) {
   const [answers, setAnswers] = useState([]);
@@ -7,6 +8,7 @@ function AnswerList({ questionId, isAuthorOfQuestion }) {
   function getToken() {
     return localStorage.getItem("token");
   }
+
   useEffect(() => {
     const token = getToken();
 
@@ -17,7 +19,11 @@ function AnswerList({ questionId, isAuthorOfQuestion }) {
         },
       })
       .then((response) => {
-        setAnswers(response.data);
+        // Sort answers so that the accepted answer is at the top
+        const sortedAnswers = response.data.sort(
+          (a, b) => b.accepted - a.accepted
+        );
+        setAnswers(sortedAnswers);
       })
       .catch((error) => {
         console.error("Error fetching answers:", error);
@@ -28,11 +34,15 @@ function AnswerList({ questionId, isAuthorOfQuestion }) {
     const token = getToken();
 
     axios
-      .put(`http://localhost:3000/answers/${_id}/accept`, {}, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      })
+      .put(
+        `http://localhost:3000/answers/${_id}/accept`,
+        {},
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      )
       .then((response) => {
         window.location.reload();
       })
@@ -42,9 +52,10 @@ function AnswerList({ questionId, isAuthorOfQuestion }) {
   };
 
   return (
-    <div>
+    <div className="answers">
       <h2>Answers</h2>
       <ul>
+        {answers.length === 0 ? <p>No answers yet!</p> : ""}
         {answers.map((answer) => (
           <li
             key={answer._id}
@@ -58,8 +69,11 @@ function AnswerList({ questionId, isAuthorOfQuestion }) {
             <p>ACCEPTED: {answer.accepted ? "YES" : "NO"}</p>
 
             {isAuthorOfQuestion && !answer.accepted && (
-              <button onClick={()=> markAsAccepted(answer._id)}>Mark as Accepted</button>
+              <button onClick={() => markAsAccepted(answer._id)}>
+                Mark as Accepted
+              </button>
             )}
+            <hr />
           </li>
         ))}
       </ul>

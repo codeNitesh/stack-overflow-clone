@@ -1,70 +1,140 @@
-# Getting Started with Create React App
+# Stack Overflow Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the README for Stack Overflow frontend application. This application serves as the user interface for interacting with the backend server, providing features such as user authentication, displaying questions, answers, and more.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+1. [Project Structure](#project-structure)
+2. [Getting Started](#getting-started)
+3. [Usage](#usage)
+4. [Components](#components)
+   - [Answers](#answers)
+   - [Questions](#questions)
+   - [Auth](#auth)
+5. [Contributing](#contributing)
+6. [License](#license)
 
-### `npm start`
+## Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Here's an overview of the project's folder structure:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **public**: Contains static assets and the HTML template file.
+- **src**: Contains the source code of the React application.
+  - **components**: Organized by feature, this directory contains various React components.
+    - **answers**: Components related to answers.
+      - `AddAnswer.js`: Component for adding new answers.
+      - `Answers.js`: Component for displaying answers.
+      - `answers.css`: CSS styles for answer components.
+    - **questions**: Components related to questions.
+      - **questionList**: Components for listing questions.
+        - `questionList.js`: Component for displaying a list of questions.
+        - `questionList.css`: CSS styles for the question list.
+      - **questionDetail**: Components for displaying question details.
+        - `questionDetail.js`: Component for displaying a single question's details.
+        - `questionDetail.css`: CSS styles for the question detail.
+      - **askQuestion**: Components for asking new questions.
+        - `askQuestion.js`: Component for asking new questions.
+        - `askQuestion.css`: CSS styles for the ask question component.
+    - **auth**: Components related to authentication.
+      - **login**: Components for user login.
+        - `login.js`: Component for user login.
+        - `login.css`: CSS styles for the login component.
+      - **register**: Components for user registration.
+        - `register.js`: Component for user registration.
+        - `register.css`: CSS styles for the registration component.
+  - `App.css`: CSS styles for the main application component.
+  - `App.js`: Main application component.
+  - `index.css`: Global CSS styles.
+  - `index.js`: Entry point for the React application.
+- `.gitignore`: Specifies files and directories to be ignored by Git.
+- `package-lock.json` and `package.json`: Dependency management files.
+- `README.md`: This file.
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To start using this frontend application, follow these steps:
 
-### `npm run build`
+1. Clone the repository to your local machine.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Navigate to the project directory:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```sh
+   cd stack-overflow-clone
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Install the required dependencies:
 
-### `npm run eject`
+   ```sh
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. Start the development server:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```sh
+   npm start
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The application should now be running and accessible in the web browser.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Usage
 
-## Learn More
+This React frontend interacts with the backend API to provide the following features:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Features:
+- Basic login with username only
+- Users can post a question
+    - A question should have
+        - Title
+        - Body
+        - Relevant tags to the question to make it more searchable
+    - Once the community starts answering
+        - Users can mark an answer as accepted
+        - Users can edit a question
+- Another User can answer the question
 
-### Code Splitting
+## Components
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Answers
 
-### Analyzing the Bundle Size
+The "Answers" components include functionalities related to answers:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- `AddAnswer.js`: Component for adding new answers.
+- `Answers.js`: Component for displaying answers.
+- `answers.css`: CSS styles for answer components.
 
-### Making a Progressive Web App
+### Questions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+The "Questions" components include functionalities related to questions:
 
-### Advanced Configuration
+- **questionList**: Components for listing questions.
+  - `questionList.js`: Component for displaying a list of questions.
+  - `questionList.css`: CSS styles for the question list.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **questionDetail**: Components for displaying question details.
+  - `questionDetail.js`: Component for displaying a single question's details.
+  - `questionDetail.css`: CSS styles for the question detail.
 
-### Deployment
+- **askQuestion**: Components for asking new questions.
+  - `askQuestion.js`: Component for asking new questions.
+  - `askQuestion.css`: CSS styles for the ask question component.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Auth
 
-### `npm run build` fails to minify
+The "Auth" components include functionalities related to user authentication:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **login**: Components for user login.
+  - `login.js`: Component for user login.
+  - `login.css`: CSS styles for the login component.
+
+- **register**: Components for user registration.
+  - `register.js`: Component for user registration.
+  - `register.css`: CSS styles for the registration component.
+
+## Contributing
+
+TODO
+
+## License
+
+TODO

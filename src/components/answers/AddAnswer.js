@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import "./answers.css"
 function AddAnswer({ questionId }) {
   const [body, setBody] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -29,6 +29,9 @@ function AddAnswer({ questionId }) {
       .then((response) => {
         setSuccessMessage('Answer posted successfully!');
         setErrorMessage('');
+        setTimeout(()=>{
+          window.location.reload();
+        }, 1000)
       })
       .catch((error) => {
         setSuccessMessage('');
@@ -42,15 +45,16 @@ function AddAnswer({ questionId }) {
       <h2>Post an Answer</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="body">Your Answer:</label>
+          {/* <label htmlFor="body">Your Answer:</label> */}
           <textarea
             id="body"
             value={body}
             onChange={handleBodyChange}
             required
+            className='text-area'
           />
         </div>
-        <button type="submit">Submit Answer</button>
+        <button className='submit-answer' type="submit">Submit Answer</button>
       </form>
       {successMessage && <p>{successMessage}</p>}
       {errorMessage && <p>{errorMessage}</p>}
