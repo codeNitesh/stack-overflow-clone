@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  // Redirect,
+  Route
 } from "react-router-dom";
 import Login from "./components/auth/login/Login";
 import Register from "./components/auth/register/Register";
@@ -17,7 +16,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Register />} />
           <Route path="/register" element={<Register />} />
 
           <Route exact path="/app" element={<QuestionList />} />

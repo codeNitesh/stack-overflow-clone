@@ -41,3 +41,10 @@
 .results{
     color: blue;
 }
+
+.logout{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    cursor: pointer;
+}

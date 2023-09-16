@@ -56,3 +56,13 @@ button:hover{
     color: red;
     font-size: .96rem;
 }
+
+.two-btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.long-btn{
+    width: 120px;
+}

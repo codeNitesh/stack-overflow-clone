@@ -34,6 +34,10 @@ function Login() {
       });
   };
 
+  const goToRegister = () => {
+    window.location.href = "/register";
+  };
+
   return (
     <div className="login-body">
       <div className="form">
@@ -58,7 +62,11 @@ function Login() {
             />
           </div>
           <p className="error">{error}</p>
-          <button type="submit">Login</button>
+
+          <div className="two-btn">
+            <button type="submit">Login</button>
+            <button className="long-btn" onClick={goToRegister}>Go to Register</button>
+          </div>
         </form>
       </div>
     </div>

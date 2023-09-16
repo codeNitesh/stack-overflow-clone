@@ -28,13 +28,16 @@ function Register() {
       })
       .catch((error) => {
         console.error("Registration error:", error);
-        if(error.response.data.message){
+        if (error.response.data.message) {
           setError("* " + error.response.data.message);
-        }else{
+        } else {
           setError("* " + error.response.data.error);
         }
-        
       });
+  };
+
+  const goToLogin = () => {
+    window.location.href = "/login";
   };
 
   return (
@@ -62,7 +65,10 @@ function Register() {
           </div>
           <p className="error">{error}</p>
 
-          <button type="submit">Register</button>
+          <div className="two-btn">
+            <button type="submit">Register</button>
+            <button className="long-btn" onClick={goToLogin}>Go To Login</button>
+          </div>
         </form>
       </div>
     </div>
