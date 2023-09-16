@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import AnswerList from '../../answers/Answers';
+import AddAnswer from '../../answers/AddAnswer';
 
 function QuestionDetail({ match }) {
   const [question, setQuestion] = useState(null);
@@ -41,6 +43,9 @@ function QuestionDetail({ match }) {
       </ul>
       <p>Author Id: {question.author}</p>
       <p>Date Posted: {new Date(question.createdAt).toLocaleDateString()}</p>
+      <AddAnswer questionId={question._id}/>
+      <AnswerList questionId={question._id} isAuthorOfQuestion={question.author === localStorage.getItem("user_id")}/>
+      
     </div>
   );
 }

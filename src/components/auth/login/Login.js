@@ -16,8 +16,9 @@ function Login() {
     axios
       .post("http://localhost:3000/auth/login", data)
       .then((response) => {
-        const { apiToken } = response.data;
+        const { apiToken, user } = response.data;
         localStorage.setItem("token", apiToken);
+        localStorage.setItem("user_id", user._id);
 
         window.location.href = "/app";
       })
