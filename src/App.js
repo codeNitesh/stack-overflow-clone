@@ -12,16 +12,6 @@ import QuestionDetail from "./components/questions/questionDetail/QuestionDetail
 import AskQuestion from "./components/questions/askQuestion/AskQuestion";
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
-
-  useEffect(() => {
-    // Check if the user is authenticated, e.g., by verifying the token in localStorage
-    const token = localStorage.getItem("token");
-    if (token) {
-      setAuthenticated(true);
-    }
-  }, []);
-
   return (
     <Router>
       <div className="App">
