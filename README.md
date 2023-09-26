@@ -2,6 +2,8 @@
 
 Welcome to the README for Stack Overflow frontend application. This application serves as the user interface for interacting with the backend server, providing features such as user authentication, displaying questions, answers, and more.
 
+Backend code: https://github.com/codeNitesh/stackoverflow-clone-backend
+
 ## Table of Contents
 
 1. [Project Structure](#project-structure)
